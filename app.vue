@@ -1,5 +1,7 @@
 <template>
+
   <div id="app">
+    <div>
     <div class="input-container">
       <label for="price" class="input-label">Price</label>
     <input type="number" v-model.number="price">
@@ -12,7 +14,16 @@
       <label for="per" class="input-label">Price-to-Earnings ratio (PER)</label>
     <input type="number" v-model.number="per">
     </div>
+      <div class="input-container">
+        <label for="per" class="input-label">Target Price-to-Earnings ratio (PER)</label>
+        <input type="number" v-model.number="target_per">
+      </div>
+    </div>
 
+    <div>
+      <label for="per" class="input-label">Target Price</label>
+      {{target_price}}
+    </div>
   </div>
 </template>
 
@@ -23,6 +34,8 @@ export default {
       price: '',
       eps:'',
       per:'',
+      target_per:'',
+      target_price:'',
     }
   },
   watch: {
@@ -30,8 +43,19 @@ export default {
       this.per = this.price/this.eps;
     },
     eps() {
+      this.target_price = this.target_per * this.eps;
       this.per = this.price/this.eps;
+    },
+    per(){
+      this.eps = this.price/this.per;
+    },
+    target_per(){
+      this.target_price = this.target_per * this.eps;
+
+
+
     }
+
   }
 }
 </script>
