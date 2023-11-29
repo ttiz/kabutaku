@@ -1,7 +1,9 @@
 <template>
 
+
   <div id="app">
-    <div>
+    <div class="columns is-mobile  is-variable is-6">
+      <div class="column is-half">
     <div class="input-container">
       <label for="price" class="input-label">Price</label>
     <input type="number" v-model.number="price">
@@ -18,16 +20,18 @@
         <label for="per" class="input-label">Target Price-to-Earnings ratio (PER)</label>
         <input type="number" v-model.number="target_per">
       </div>
-    </div>
+      </div>
 
-    <div>
+      <div class="column is-half">
       <label for="per" class="input-label">Target Price</label>
       {{target_price}}
-    </div>
+      </div>
+  </div>
   </div>
 </template>
 
 <script>
+import 'bulma/css/bulma.css';
 export default {
   data() {
     return {
@@ -47,7 +51,7 @@ export default {
       this.per = this.price/this.eps;
     },
     per(){
-      this.eps = this.price/this.per;
+      // this.eps = this.price/this.per;
     },
     target_per(){
       this.target_price = this.target_per * this.eps;
@@ -61,6 +65,10 @@ export default {
 </script>
 
 <style scoped>
+.columns{
+  padding: 10px;
+}
+
 .input-container {
   margin-bottom: 10px;
 }
@@ -77,4 +85,6 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+
 </style>
